@@ -1,0 +1,50 @@
+---
+import Logo from './Logo.astro';
+import Icons from './Icons.astro';
+import { contact } from '../data/contact';
+import { waLink } from '../lib/links';
+
+const nav = [
+  { href: '/#services', label: 'Services' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/#about', label: 'About' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+<header class="sticky top-0 z-40 border-b border-granite-100 bg-cream/95 backdrop-blur">
+  <div class="container-x flex h-16 items-center justify-between gap-3">
+    <a href="/" class="flex items-center gap-3" aria-label={`${contact.brand} home`}>
+      <Logo size={44} priority />
+      <span class="font-display text-lg font-semibold leading-none text-navy-800">{contact.brand}</span>
+    </a>
+
+    <nav aria-label="Main" class="hidden items-center gap-7 md:flex">
+      {nav.map((n) => <a href={n.href} class="font-semibold text-granite-700 hover:text-navy-700">{n.label}</a>)}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={waLink('Hello Sreehari Gardens, I would like to know more about your services.')} class="btn btn-wa hidden !px-4 !py-2 md:inline-flex" target="_blank" rel="noopener">
+        <Icons name="whatsapp" class="h-5 w-5" /> WhatsApp us
+      </a>
+      <button type="button" id="menu-btn" class="grid h-11 w-11 place-items-center rounded-full text-navy-800 md:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <Icons name="menu" class="h-7 w-7" />
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Mobile" class="hidden border-t border-granite-100 bg-cream md:hidden">
+    <ul class="container-x py-2">
+      {nav.map((n) => <li><a href={n.href} class="block py-3 text-lg font-semibold text-granite-900">{n.label}</a></li>)}
+    </ul>
+  </nav>
+</header>
+<script>
+  const btn = document.getElementById('menu-btn')!;
+  const panel = document.getElementById('mobile-nav')!;
+  const set = (open: boolean) => {
+    panel.classList.toggle('hidden', !open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  btn.addEventListener('click', () => set(panel.classList.contains('hidden')));
+  panel.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
+</script>

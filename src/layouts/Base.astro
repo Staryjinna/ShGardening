@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingActions from '../components/FloatingActions.astro';
+import { contact } from '../data/contact';
+import { services } from '../data/services';
+
+interface Props { title: string; description: string; path?: string; }
+const { title, description, path = '/' } = Astro.props;
+const site = Astro.site!.toString().replace(/\/$/, '');
+const canonical = site + path;
+const ogImage = `${site}/og.jpg`;
+
+// TODO: add "address" (PostalAddress) and "geo" once the business address is known.
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
+  '@id': `${site}/#business`,
+  name: contact.brand,
+  alternateName: contact.shortBrand,
+  url: site + '/',
+  image: ogImage,
+  logo: `${site}/icon-512.png`,
+  description,
+  telephone: `+${contact.phones[0].digits}`,
+  contactPoint: contact.phones.map((p) => ({ '@type': 'ContactPoint', telephone: `+${p.digits}`, contactType: 'customer service', areaServed: 'IN-KL' })),
+  founder: { '@type': 'Person', name: contact.owner },
+  areaServed: { '@type': 'State', name: contact.areaServed },
+  sameAs: [contact.instagram.url],
+  makesOffer: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name }, priceSpecification: { '@type': 'PriceSpecification', price: s.price, priceCurrency: 'INR', description: `Starting from ${s.unit}` } })),
+  ...(contact.address ? { address: { '@type': 'PostalAddress', streetAddress: contact.address, addressCountry: 'IN' } } : {}),
+  ...(contact.geo ? { geo: { '@type': 'GeoCoordinates', latitude: contact.geo.lat, longitude: contact.geo.lng } } : {}),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#1f4e79" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={contact.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" /></noscript>
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body class="pb-14 md:pb-0">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+    <FloatingActions />
+    <script>
+      const els = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        els.forEach((el) => io.observe(el));
+      } else els.forEach((el) => el.classList.add('is-visible'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+---
+import { taglines } from '../data/taglines';
+import { services } from '../data/services';
+const mex = services.find((s) => s.id === 'mexican-grass')!;
+const pearl = services.find((s) => s.id === 'pearl-grass')!;
+// TODO: have Srihari review these descriptions so they match what he recommends on site.
+const cards = [
+  {
+    name: 'Mexican grass',
+    price: `From ₹${mex.price} / sq ft`,
+    intro: 'A hardy, wider-leaved lawn grass that suits family lawns and play areas.',
+    points: [
+      'Good for: everyday family lawns',
+      'Care: regular watering and mowing; weeding as needed',
+      'Bonus: one free maintenance included with our complete work',
+    ],
+  },
+  {
+    name: 'Pearl grass',
+    price: `From ₹${pearl.price} / sq ft`,
+    intro: "A finer, dense-looking grass that suits Kerala's climate, planted as sheets or by splitting.",
+    points: [
+      'Varieties: Pearl grass, Thailand Pearl, Variegated Pearl grass',
+      'Good for: neat decorative lawns and around stepping stones',
+      'Care: regular watering and trimming; known for fast growth and low maintenance',
+    ],
+  },
+];
+---
+<section id="grass" class="section">
+  <div class="container-x">
+    <p class="eyebrow">Choosing your lawn</p>
+    <h2 class="mt-2 max-w-2xl text-3xl font-semibold text-navy-800 sm:text-4xl">Mexican grass or pearl grass?</h2>
+    <p class="mt-3 max-w-2xl text-granite-700"><span lang="ml" class="font-semibold">{taglines.pearl.ml}</span> <span class="text-sm">({taglines.pearl.en})</span></p>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {cards.map((c) => (
+        <article class="reveal rounded-2xl border border-granite-100 bg-white p-6">
+          <h3 class="text-2xl font-semibold text-navy-800">{c.name}</h3>
+          <p class="mt-1 font-bold text-laterite-700">{c.price}</p>
+          <p class="mt-3 text-granite-700">{c.intro}</p>
+          <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-granite-900">{c.points.map((p) => <li>{p}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+    <p class="mt-6 text-sm text-granite-700">Not sure which is right for your plot? Sunlight, soil and how the lawn will be used all matter, and we will advise during your free site visit.</p>
+  </div>
+</section>

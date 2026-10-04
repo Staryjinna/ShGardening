@@ -1,0 +1,66 @@
+---
+import Icons from './Icons.astro';
+import { contact } from '../data/contact';
+import { services } from '../data/services';
+import { taglines } from '../data/taglines';
+import { waLink, telLink } from '../lib/links';
+---
+<section id="contact" class="section bg-white">
+  <div class="container-x grid gap-10 lg:grid-cols-2">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 class="mt-2 text-3xl font-semibold text-navy-800 sm:text-4xl">Book your free site visit</h2>
+      <p class="mt-3 text-granite-700"><span lang="ml" class="font-semibold">{taglines.newLife.ml}</span> <span class="text-sm">({taglines.newLife.en})</span></p>
+      <a href={waLink('Hello Sreehari Gardens, I would like a free site visit.')} target="_blank" rel="noopener" class="btn btn-wa mt-6"><Icons name="whatsapp" /> Chat on WhatsApp</a>
+      <ul class="mt-8 space-y-3">
+        {contact.phones.map((p) => (
+          <li><a href={telLink(p.digits)} class="inline-flex items-center gap-3 text-lg font-semibold text-navy-800 hover:underline"><Icons name="phone" class="h-5 w-5 text-leaf-700" /> {p.display}</a></li>
+        ))}
+      </ul>
+      {contact.address && <p class="mt-6 flex gap-2 text-granite-900"><Icons name="pin" class="mt-1 h-5 w-5 shrink-0 text-laterite-600" />{contact.address}</p>}
+      {contact.mapEmbedUrl
+        ? <iframe title="Map showing Sreehari Gardens" src={contact.mapEmbedUrl} loading="lazy" class="mt-6 h-64 w-full rounded-xl border-0" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        : import.meta.env.DEV && <div class="mt-6 rounded-xl border-2 border-dashed border-laterite-500 p-6 text-sm text-laterite-700">DEV ONLY: TODO add business address and Google Maps embed URL in src/data/contact.ts</div>}
+    </div>
+
+    <form id="enquiry" class="rounded-2xl bg-cream p-6 ring-1 ring-granite-100" data-wa={contact.whatsapp}>
+      <h3 class="text-xl font-semibold text-navy-800">Send an enquiry on WhatsApp</h3>
+      <p class="mt-1 text-sm text-granite-700">Fill this in and WhatsApp opens with your message ready to send.</p>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <label class="block text-sm font-semibold">Name
+          <input name="name" required autocomplete="name" class="mt-1 w-full rounded-lg border border-granite-500 bg-white px-3 py-2.5 text-base font-normal" /></label>
+        <label class="block text-sm font-semibold">Phone
+          <input name="phone" type="tel" inputmode="tel" required autocomplete="tel" class="mt-1 w-full rounded-lg border border-granite-500 bg-white px-3 py-2.5 text-base font-normal" /></label>
+        <label class="block text-sm font-semibold sm:col-span-2">Location (town / district)
+          <input name="location" required autocomplete="address-level2" class="mt-1 w-full rounded-lg border border-granite-500 bg-white px-3 py-2.5 text-base font-normal" /></label>
+        <label class="block text-sm font-semibold sm:col-span-2">Service
+          <select name="service" required class="mt-1 w-full rounded-lg border border-granite-500 bg-white px-3 py-2.5 text-base font-normal">
+            <option value="">Choose a service</option>
+            {services.map((s) => <option value={s.name}>{s.name}</option>)}
+            <option value="Not sure yet">Not sure yet</option>
+          </select></label>
+        <label class="block text-sm font-semibold sm:col-span-2">Message (optional)
+          <textarea name="message" rows="3" class="mt-1 w-full rounded-lg border border-granite-500 bg-white px-3 py-2.5 text-base font-normal"></textarea></label>
+      </div>
+      <button type="submit" class="btn btn-wa mt-5 w-full"><Icons name="whatsapp" /> Send on WhatsApp</button>
+    </form>
+  </div>
+</section>
+<script>
+  const form = document.getElementById('enquiry') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const lines = [
+      'Hello Sreehari Gardens, I would like a free site visit and quote.',
+      `Name: ${d.get('name')}`,
+      `Phone: ${d.get('phone')}`,
+      `Location: ${d.get('location')}`,
+      `Service: ${d.get('service')}`,
+    ];
+    const msg = String(d.get('message') || '').trim();
+    if (msg) lines.push(`Message: ${msg}`);
+    const url = `https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(lines.join('\n'))}`;
+    window.open(url, '_blank', 'noopener') || (window.location.href = url);
+  });
+</script>

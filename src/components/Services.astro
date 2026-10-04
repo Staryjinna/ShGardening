@@ -1,0 +1,53 @@
+---
+import Pic from './Pic.astro';
+import Icons from './Icons.astro';
+import { services, formatPrice, quoteMessage } from '../data/services';
+import { taglines } from '../data/taglines';
+import { waLink } from '../lib/links';
+const market = 'Price may change according to market rate';
+---
+<section id="services" class="section stone-grid">
+  <div class="container-x">
+    <p class="eyebrow">Services &amp; starting prices</p>
+    <h2 class="mt-2 max-w-2xl text-3xl font-semibold text-navy-800 sm:text-4xl">Everything your garden needs, with clear starting prices</h2>
+    <p class="mt-3 text-granite-700"><span lang="ml" class="font-semibold">{taglines.courtyard.ml}</span> <span class="text-sm">({taglines.courtyard.en})</span></p>
+
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <li class="reveal flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-granite-100">
+          <div class="aspect-[4/3] overflow-hidden"><Pic src={s.image} alt={s.imageAlt} pos={s.imagePos} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 100vw" /></div>
+          <div class="flex flex-1 flex-col p-5">
+            <h3 class="text-xl font-semibold text-navy-800">{s.name}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-granite-700">{s.description}</p>
+            {s.highlights && (
+              <ul class="mt-3 space-y-1 text-sm font-semibold text-leaf-700">
+                {s.highlights.map((h) => <li class="flex items-center gap-2"><Icons name="check" class="h-4 w-4" />{h}</li>)}
+              </ul>
+            )}
+            <div class="mt-auto pt-5">
+              <p class="text-xs font-bold uppercase tracking-wider text-granite-700">Starting from</p>
+              <p class="font-display text-2xl font-semibold text-laterite-700">{formatPrice(s)}{s.marketRate && <span aria-hidden="true">*</span>}</p>
+              {s.marketRate && <p class="text-xs text-granite-700">* {market}</p>}
+              <a href={waLink(quoteMessage(s))} target="_blank" rel="noopener" class="btn btn-wa mt-4 w-full" aria-label={`Get a quote for ${s.name} on WhatsApp`}>
+                <Icons name="whatsapp" /> Get a quote
+              </a>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="reveal mt-12 overflow-x-auto rounded-2xl bg-white ring-1 ring-granite-100">
+      <table class="w-full min-w-[28rem] text-left text-sm">
+        <caption class="sr-only">Starting prices</caption>
+        <thead class="bg-sand text-granite-900"><tr><th scope="col" class="px-4 py-3">Service</th><th scope="col" class="px-4 py-3">Starting from</th></tr></thead>
+        <tbody>
+          {services.map((s) => (
+            <tr class="border-t border-granite-100"><th scope="row" class="px-4 py-3 font-semibold">{s.name}</th><td class="px-4 py-3">{formatPrice(s)}{s.marketRate && '*'}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3 text-sm text-granite-700"><strong>Final quote after a free site visit.</strong> * {market}.</p>
+  </div>
+</section>

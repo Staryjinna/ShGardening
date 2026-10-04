@@ -1,0 +1,7 @@
+---
+import { Picture } from 'astro:assets';
+import logo from '../assets/brand/logo-sg-garden.jpg';
+import { contact } from '../data/contact';
+const { size = 48, priority = false } = Astro.props;
+---
+<Picture src={logo} alt={`${contact.shortBrand} logo`} formats={['avif']} fallbackFormat="webp" widths={[size, size * 2]} sizes={`${size}px`} width={size} height={size} class="rounded-full" loading={priority ? 'eager' : 'lazy'} />
