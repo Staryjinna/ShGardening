@@ -1,0 +1,38 @@
+---
+import ReelEmbed from './ReelEmbed.astro';
+import Pic from './Pic.astro';
+import Icons from './Icons.astro';
+import { reels } from '../data/reels';
+import { projects } from '../data/projects';
+import { contact } from '../data/contact';
+// TODO: paste more reel links into src/data/reels.ts. While that list is empty a photo grid is shown instead.
+const fallback = projects.slice(0, 4);
+---
+<section id="reels" class="section bg-sand">
+  <div class="container-x">
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div>
+        <p class="eyebrow">Instagram</p>
+        <h2 class="mt-2 text-3xl font-semibold text-navy-800 sm:text-4xl">Watch our work on Instagram</h2>
+        <p class="mt-2 text-granite-700">Tap a reel to play it right here.</p>
+      </div>
+      <a href={contact.instagram.url} target="_blank" rel="noopener" class="btn btn-navy self-start sm:self-auto"><Icons name="instagram" /> Follow @{contact.instagram.handle}</a>
+    </div>
+    <div class="mt-8">
+      {reels.length > 0 ? (
+        <ReelEmbed reels={reels} />
+      ) : (
+        <ul class="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {fallback.map((p) => (
+            <li class="aspect-[3/4] overflow-hidden rounded-xl">
+              <a href={contact.instagram.url} target="_blank" rel="noopener" class="tile block h-full" aria-label={`${p.title}: see more on Instagram`}>
+                <Pic src={p.image} alt={p.alt} pos={p.pos} sizes="(min-width: 768px) 25vw, 50vw" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+    <p class="mt-4 text-sm text-granite-700">Reels not loading? <a class="font-semibold text-navy-700 underline" href={contact.instagram.url} target="_blank" rel="noopener">Open our Instagram profile</a>.</p>
+  </div>
+</section>
