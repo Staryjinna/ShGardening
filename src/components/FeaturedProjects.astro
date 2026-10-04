@@ -1,7 +1,6 @@
 ---
 import PhotoGrid from './PhotoGrid.astro';
 import { projects } from '../data/projects';
-import { taglines } from '../data/taglines';
 const featured = projects.filter((p) => p.featured);
 ---
 <section id="projects" class="section bg-white">
@@ -11,7 +10,6 @@ const featured = projects.filter((p) => p.featured);
       <div>
         <p class="eyebrow">Our work</p>
         <h2 class="mt-2 text-3xl font-semibold text-navy-800 sm:text-4xl">Gardens we have built</h2>
-        <p class="mt-2 text-granite-700"><span lang="ml" class="font-semibold">{taglines.courtyard.ml}</span></p>
       </div>
       <a href="/projects/" class="btn btn-outline self-start sm:self-auto">See all projects</a>
     </div>

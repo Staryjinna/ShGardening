@@ -2,7 +2,6 @@
 import Icons from './Icons.astro';
 import { contact } from '../data/contact';
 import { services } from '../data/services';
-import { taglines } from '../data/taglines';
 import { waLink, telLink } from '../lib/links';
 ---
 <section id="contact" class="section bg-white">
@@ -10,7 +9,7 @@ import { waLink, telLink } from '../lib/links';
     <div>
       <p class="eyebrow">Contact</p>
       <h2 class="mt-2 text-3xl font-semibold text-navy-800 sm:text-4xl">Book your free site visit</h2>
-      <p class="mt-3 text-granite-700"><span lang="ml" class="font-semibold">{taglines.newLife.ml}</span> <span class="text-sm">({taglines.newLife.en})</span></p>
+      <p class="mt-3 text-granite-700">Give your garden new life. Message or call us and Srihari will arrange a visit.</p>
       <a href={waLink('Hello Sreehari Gardens, I would like a free site visit.')} target="_blank" rel="noopener" class="btn btn-wa mt-6"><Icons name="whatsapp" /> Chat on WhatsApp</a>
       <ul class="mt-8 space-y-3">
         {contact.phones.map((p) => (

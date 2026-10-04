@@ -100,6 +100,9 @@ export const services: Service[] = [
   },
 ];
 
+/** Prices are hidden on the site. Set to true to show them again on the cards and price table. */
+export const showPrices = false;
+
 export const formatPrice = (s: Service) => `₹${s.price.toLocaleString('en-IN')} ${s.unit}`;
 
 export const quoteMessage = (s: Service) =>

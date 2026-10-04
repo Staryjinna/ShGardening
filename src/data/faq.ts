@@ -1,12 +1,9 @@
-import { services } from './services';
 
-const get = (id: string) => services.find((s) => s.id === id)!;
-const lawn = get('mexican-grass');
 
 export const faqs = [
   {
-    q: 'How is pricing calculated?',
-    a: `Most work is priced per square foot. Lawns start from ₹${get('pearl-grass').price}/sq ft (pearl grass) and ₹${lawn.price}/sq ft (Mexican grass); stone work starts from ₹${get('tandur-stone').price}/sq ft. The final quote depends on your plot, the materials and the design, and is given after a free site visit.`,
+    q: 'How do I get a price?',
+    a: 'Pricing depends on the area, the materials and the design. Message or call us, and after a free site visit Srihari gives you a clear quote.',
   },
   {
     q: 'Is the site visit really free?',
@@ -26,6 +23,6 @@ export const faqs = [
   {
     q: 'Do you offer maintenance plans?',
     // TODO: confirm plan options, visit frequency and pricing with Srihari.
-    a: `Yes. Garden maintenance (grass cutting, land clearance, pruning, manuring and weeding) starts from ₹${get('garden-maintenance').price}/sq ft. Mexican grass lawns include one free maintenance visit.`,
+    a: 'Yes. We offer garden maintenance: grass cutting, land clearance, pruning, manuring and weeding. Mexican grass lawns include one free maintenance visit.',
   },
 ];

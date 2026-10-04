@@ -21,11 +21,10 @@ Set the environment variable `SITE_URL` (for example `https://www.yourdomain.in`
 | What | File |
 |---|---|
 | Phone numbers, WhatsApp number, Instagram, address, map | `src/data/contact.ts` |
-| Services and prices | `src/data/services.ts` |
+| Services (prices are hidden; set `showPrices = true` to show them) | `src/data/services.ts` |
 | Portfolio photos and categories | `src/data/projects.ts` |
 | Instagram reels | `src/data/reels.ts` |
 | FAQ | `src/data/faq.ts` |
-| Malayalam taglines | `src/data/taglines.ts` |
 
 Add new photos to `src/assets/photos/`, then add an entry to `src/data/projects.ts`. Images are converted to AVIF/WebP at build time.
 

@@ -1,16 +1,15 @@
 ---
 import Pic from './Pic.astro';
 import Icons from './Icons.astro';
-import { services, formatPrice, quoteMessage } from '../data/services';
-import { taglines } from '../data/taglines';
+import { services, formatPrice, quoteMessage, showPrices } from '../data/services';
 import { waLink } from '../lib/links';
 const market = 'Price may change according to market rate';
 ---
 <section id="services" class="section stone-grid">
   <div class="container-x">
-    <p class="eyebrow">Services &amp; starting prices</p>
-    <h2 class="mt-2 max-w-2xl text-3xl font-semibold text-navy-800 sm:text-4xl">Everything your garden needs, with clear starting prices</h2>
-    <p class="mt-3 text-granite-700"><span lang="ml" class="font-semibold">{taglines.courtyard.ml}</span> <span class="text-sm">({taglines.courtyard.en})</span></p>
+    <p class="eyebrow">Our services</p>
+    <h2 class="mt-2 max-w-2xl text-3xl font-semibold text-navy-800 sm:text-4xl">Everything your garden needs</h2>
+    <p class="mt-3 text-granite-700">Make your courtyard beautiful at low cost.</p>
 
     <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((s) => (
@@ -25,10 +24,12 @@ const market = 'Price may change according to market rate';
               </ul>
             )}
             <div class="mt-auto pt-5">
+              {showPrices && (<>
               <p class="text-xs font-bold uppercase tracking-wider text-granite-700">Starting from</p>
               <p class="font-display text-2xl font-semibold text-laterite-700">{formatPrice(s)}{s.marketRate && <span aria-hidden="true">*</span>}</p>
               {s.marketRate && <p class="text-xs text-granite-700">* {market}</p>}
-              <a href={waLink(quoteMessage(s))} target="_blank" rel="noopener" class="btn btn-wa mt-4 w-full" aria-label={`Get a quote for ${s.name} on WhatsApp`}>
+              </>)}
+              <a href={waLink(quoteMessage(s))} target="_blank" rel="noopener" class="btn btn-wa mt-1 w-full" aria-label={`Get a quote for ${s.name} on WhatsApp`}>
                 <Icons name="whatsapp" /> Get a quote
               </a>
             </div>
@@ -37,6 +38,7 @@ const market = 'Price may change according to market rate';
       ))}
     </ul>
 
+    {showPrices && (<>
     <div class="reveal mt-12 overflow-x-auto rounded-2xl bg-white ring-1 ring-granite-100">
       <table class="w-full min-w-[28rem] text-left text-sm">
         <caption class="sr-only">Starting prices</caption>
@@ -49,5 +51,7 @@ const market = 'Price may change according to market rate';
       </table>
     </div>
     <p class="mt-3 text-sm text-granite-700"><strong>Final quote after a free site visit.</strong> * {market}.</p>
+    </>)}
+    {!showPrices && <p class="mt-8 text-granite-700"><strong>Final quote after a free site visit.</strong> Message us on WhatsApp to get started.</p>}
   </div>
 </section>

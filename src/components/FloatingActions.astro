@@ -3,14 +3,14 @@ import Icons from './Icons.astro';
 import { waLink, telLink, primaryPhone } from '../lib/links';
 ---
 <a href={waLink('Hello Sreehari Gardens, I would like to know more about your services.')} target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
-   class="fixed bottom-20 right-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#1b7f3f] text-white shadow-lg transition hover:scale-105 md:bottom-6 md:right-6">
-  <Icons name="whatsapp" class="h-8 w-8" />
+   class="fixed bottom-14 right-3 z-40 grid h-11 w-11 place-items-center rounded-full bg-[#1b7f3f] text-white shadow-lg transition hover:scale-105 md:bottom-6 md:right-6 md:h-14 md:w-14">
+  <Icons name="whatsapp" class="h-6 w-6" />
 </a>
 <div class="fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 border-t border-granite-100 bg-white shadow-[0_-4px_16px_rgba(0,0,0,.08)] md:hidden">
-  <a href={telLink(primaryPhone.digits)} class="flex min-h-14 items-center justify-center gap-2 font-bold text-navy-800">
-    <Icons name="phone" /> Call now
+  <a href={telLink(primaryPhone.digits)} class="flex h-10 items-center justify-center gap-1.5 text-sm font-bold text-navy-800">
+    <Icons name="phone" class="h-4 w-4" /> Call now
   </a>
-  <a href={waLink('Hello Sreehari Gardens, I would like a free site visit.')} target="_blank" rel="noopener" class="flex min-h-14 items-center justify-center gap-2 bg-[#1b7f3f] font-bold text-white">
-    <Icons name="whatsapp" /> WhatsApp
+  <a href={waLink('Hello Sreehari Gardens, I would like a free site visit.')} target="_blank" rel="noopener" class="flex h-10 items-center justify-center gap-1.5 bg-[#1b7f3f] text-sm font-bold text-white">
+    <Icons name="whatsapp" class="h-4 w-4" /> WhatsApp
   </a>
 </div>

@@ -28,7 +28,7 @@ const schema = {
   founder: { '@type': 'Person', name: contact.owner },
   areaServed: { '@type': 'State', name: contact.areaServed },
   sameAs: [contact.instagram.url],
-  makesOffer: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name }, priceSpecification: { '@type': 'PriceSpecification', price: s.price, priceCurrency: 'INR', description: `Starting from ${s.unit}` } })),
+  makesOffer: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name } })),
   ...(contact.address ? { address: { '@type': 'PostalAddress', streetAddress: contact.address, addressCountry: 'IN' } } : {}),
   ...(contact.geo ? { geo: { '@type': 'GeoCoordinates', latitude: contact.geo.lat, longitude: contact.geo.lng } } : {}),
 };
@@ -62,12 +62,12 @@ const schema = {
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" /></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" /></noscript>
     <script is:inline>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
-  <body class="pb-14 md:pb-0">
+  <body class="pb-10 md:pb-0">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2">Skip to content</a>
     <Header />
     <main id="main"><slot /></main>

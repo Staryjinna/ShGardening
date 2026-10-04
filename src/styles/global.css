@@ -20,14 +20,13 @@
   --color-granite-700: #44484d;
   --color-granite-900: #26292c;
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-sans: "Figtree", "Noto Sans Malayalam", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 @layer base {
   html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   body { background: var(--color-cream); color: var(--color-granite-900); font-family: var(--font-sans); }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
-  [lang="ml"] { font-family: "Noto Sans Malayalam", "Manjari", sans-serif; letter-spacing: 0; }
   :focus-visible { outline: 3px solid var(--color-navy-700); outline-offset: 3px; border-radius: 4px; }
   .on-dark :focus-visible { outline-color: #fff; }
   @media (prefers-reduced-motion: reduce) {
