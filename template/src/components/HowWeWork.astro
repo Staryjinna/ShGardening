@@ -1,0 +1,25 @@
+---
+import { contact } from '../data/contact';
+const steps = [
+  { t: 'Call or WhatsApp', d: 'Tell us about your space and what you have in mind.' },
+  { t: 'Free site visit & quote', d: 'We visit, take measurements and give you a clear quote.' },
+  { t: 'Design & execution', d: `Our team builds the lawn, stone work or planting, overseen by ${contact.owner}.` },
+  { t: 'Maintenance support', d: 'We keep your garden healthy with maintenance when you need it.' },
+];
+---
+<section id="process" class="on-dark section relative bg-navy-800 text-white">
+  <div class="stone-grid-light absolute inset-0" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <p class="eyebrow !text-leaf-100">How we work</p>
+    <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">From first call to finished garden</h2>
+    <ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {steps.map((s, i) => (
+        <li class="reveal rounded-2xl bg-white/10 p-6">
+          <span class="grid h-10 w-10 place-items-center rounded-full bg-leaf-500 font-display text-lg font-bold text-navy-900">{i + 1}</span>
+          <h3 class="mt-4 text-xl font-semibold">{s.t}</h3>
+          <p class="mt-2 text-sm text-white/85">{s.d}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

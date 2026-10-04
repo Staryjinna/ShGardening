@@ -1,0 +1,24 @@
+---
+import { contact } from '../data/contact';
+import { projectTypes } from '../data/services';
+---
+<section id="about" class="section">
+  <div class="container-x grid items-start gap-10 lg:grid-cols-2">
+    <div class="reveal">
+      <p class="eyebrow">About</p>
+      <h2 class="mt-2 text-3xl font-semibold text-navy-800 sm:text-4xl">Owner-led, from the first visit to the last plant</h2>
+      <p class="mt-4 text-granite-700">{contact.brand} is owned and run by {contact.owner}, who personally oversees every project. The business has completed {contact.projectsCompleted} garden projects across {contact.areaServed}.</p>
+      {/* TODO: add a few lines in the owner's own words (his story, how he started, what he cares about). Do not invent biography details, years in business or awards. */}
+      {/* TODO: add the owner's photo (src/assets/brand/owner.jpg) and show it in the figure below. */}
+      <h3 class="mt-8 text-xl font-semibold text-navy-800">What we do</h3>
+      <ul class="mt-3 grid gap-2 text-granite-900 sm:grid-cols-2">
+        {projectTypes.map((t) => <li class="flex gap-2"><span class="mt-2 h-2 w-2 shrink-0 rounded-sm bg-laterite-500"></span>{t}</li>)}
+      </ul>
+    </div>
+    {import.meta.env.DEV && (
+      <figure class="reveal flex aspect-[4/5] items-center justify-center rounded-2xl border-2 border-dashed border-laterite-500 bg-laterite-100 p-6 text-center text-laterite-700">
+        <figcaption>DEV ONLY: TODO add the owner's photo and a few lines in his own words. This box is hidden in production builds.</figcaption>
+      </figure>
+    )}
+  </div>
+</section>

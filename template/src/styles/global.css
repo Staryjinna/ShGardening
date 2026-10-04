@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-leaf-50: #f1f8ee;
+  --color-leaf-100: #dcefd6;
+  --color-leaf-500: #5baa4a;
+  --color-leaf-600: #3f8a35;
+  --color-leaf-700: #2f7129;
+  --color-navy-700: #1f4e79;
+  --color-navy-800: #173b5d;
+  --color-navy-900: #0f2a43;
+  --color-laterite-100: #f6e2d8;
+  --color-laterite-500: #c0603a;
+  --color-laterite-600: #a94d2a;
+  --color-laterite-700: #8c3d1f;
+  --color-cream: #faf6ee;
+  --color-sand: #efe8da;
+  --color-granite-100: #e4e2dd;
+  --color-granite-500: #6b7075;
+  --color-granite-700: #44484d;
+  --color-granite-900: #26292c;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { background: var(--color-cream); color: var(--color-granite-900); font-family: var(--font-sans); }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+  :focus-visible { outline: 3px solid var(--color-navy-700); outline-offset: 3px; border-radius: 4px; }
+  .on-dark :focus-visible { outline-color: #fff; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  .container-x { width: 100%; max-width: 76rem; margin-inline: auto; padding-inline: 1rem; }
+  @media (min-width: 640px) { .container-x { padding-inline: 1.5rem; } }
+  .section { padding-block: 4rem; }
+  @media (min-width: 1024px) { .section { padding-block: 6rem; } }
+  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--color-laterite-600); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: 999px; padding: .8rem 1.4rem; font-weight: 700; line-height: 1.2; transition: transform .2s, background-color .2s, color .2s; text-align: center; min-height: 3rem; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-wa { background: #1b7f3f; color: #fff; }
+  .btn-wa:hover { background: #146a33; }
+  .btn-navy { background: var(--color-navy-700); color: #fff; }
+  .btn-navy:hover { background: var(--color-navy-900); }
+  .btn-ghost { border: 2px solid currentColor; }
+  .btn-ghost:hover { background: rgba(255,255,255,.12); }
+  .btn-outline { border: 2px solid var(--color-navy-700); color: var(--color-navy-700); }
+  .btn-outline:hover { background: var(--color-navy-700); color: #fff; }
+
+  /* Motif: faint stepping-stone grid */
+  .stone-grid {
+    background-image:
+      linear-gradient(rgba(38,41,44,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(38,41,44,.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .stone-grid-light {
+    background-image:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  /* Motif: jaali (laterite lattice) divider */
+  .jaali {
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' viewBox='0 0 32 16'%3E%3Crect x='2' y='2' width='12' height='12' fill='none' stroke='%23c0603a' stroke-width='2'/%3E%3Crect x='18' y='2' width='12' height='12' fill='%23c0603a' fill-opacity='.18' stroke='%23c0603a' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: center;
+    opacity: .85;
+  }
+
+  .reveal { transition: opacity .7s ease, transform .7s ease; }
+  .js .reveal:not(.is-visible) { opacity: 0; transform: translateY(18px); }
+
+  .tile img { transition: transform .6s ease; }
+  .tile:hover img { transform: scale(1.06); }
+  @media (prefers-reduced-motion: reduce) { .tile:hover img { transform: none; } }
+
+  /* Lightbox */
+  dialog.lb { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(10,18,26,.94); color: #fff; }
+  dialog.lb::backdrop { background: transparent; }
+  dialog.lb[open] { display: flex; align-items: center; justify-content: center; }
+  .lb-btn { position: absolute; display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 999px; background: rgba(255,255,255,.14); font-size: 1.6rem; line-height: 1; color: #fff; }
+  .lb-btn:hover { background: rgba(255,255,255,.28); }
+}

@@ -1,0 +1,35 @@
+---
+import { cleanReelUrl } from '../data/reels';
+interface Props { reels: string[]; }
+const urls = Astro.props.reels.map(cleanReelUrl).filter((u): u is string => !!u);
+---
+<div id="reel-embeds" class="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:px-0" tabindex="0" role="group" aria-label="Instagram reels, scroll sideways">
+  {urls.map((u) => (
+    <div class="w-[326px] max-w-full shrink-0 snap-start">
+      <blockquote class="instagram-media" data-instgrm-permalink={`${u}?utm_source=ig_embed&utm_campaign=loading`} data-instgrm-version="14"
+        style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:300px;padding:0;width:calc(100% - 2px);">
+        <a href={u} target="_blank" rel="noopener" class="block p-6 text-center font-semibold text-navy-700 underline">Watch this reel on Instagram</a>
+      </blockquote>
+    </div>
+  ))}
+</div>
+<script>
+  // Instagram's official embed.js is loaded only when this section nears the viewport.
+  const host = document.getElementById('reel-embeds');
+  if (host) {
+    const load = () => {
+      const w = window as any;
+      if (w.instgrm) { w.instgrm.Embeds.process(); return; }
+      const s = document.createElement('script');
+      s.src = 'https://www.instagram.com/embed.js';
+      s.async = true;
+      document.body.appendChild(s);
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) { io.disconnect(); load(); }
+      }, { rootMargin: '300px' });
+      io.observe(host);
+    } else load();
+  }
+</script>

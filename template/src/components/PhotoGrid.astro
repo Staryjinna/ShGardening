@@ -1,0 +1,23 @@
+---
+import { getImage } from 'astro:assets';
+import Pic from './Pic.astro';
+import type { Project } from '../data/projects';
+
+interface Props { items: Project[]; group: string; }
+const { items, group } = Astro.props;
+const aspects = ['aspect-[3/4]', 'aspect-[4/5]', 'aspect-[3/5]', 'aspect-[1/1]', 'aspect-[3/4]', 'aspect-[2/3]'];
+const tiles = await Promise.all(
+  items.map(async (p, i) => ({ p, aspect: aspects[i % aspects.length], full: (await getImage({ src: p.image, format: 'webp', width: 739, quality: 82 })).src })),
+);
+---
+<ul class="columns-2 gap-3 md:columns-3 md:gap-4" data-lb-group={group}>
+  {tiles.map(({ p, aspect, full }) => (
+    <li class="mb-3 break-inside-avoid md:mb-4" data-cat={p.category}>
+      <button type="button" class={`tile group relative block w-full overflow-hidden rounded-xl bg-granite-100 ${aspect}`}
+        data-lb data-full={full} data-alt={p.alt} data-caption={p.title} aria-label={`Open photo: ${p.title}`}>
+        <Pic src={p.image} alt={p.alt} pos={p.pos} sizes="(min-width: 1024px) 380px, 50vw" widths={[360, 540, 739]} />
+        <span class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 pt-10 text-left text-sm font-semibold text-white">{p.title}</span>
+      </button>
+    </li>
+  ))}
+</ul>
