@@ -5,11 +5,10 @@ import { contact } from '../data/contact';
 import { telLink } from '../lib/links';
 ---
 <footer class="on-dark bg-navy-900 pb-16 pt-14 text-white/85 md:pb-10">
-  <div class="container-x grid gap-10 md:grid-cols-4">
+  <div class="container-x grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
     <div class="md:col-span-1">
       <div class="flex items-center gap-3">
-        <Logo size={56} />
-        <span class="font-display text-xl font-semibold text-white">{contact.brand}</span>
+        <Logo size={160} variant="full" />
       </div>
       <p class="mt-4 text-sm leading-relaxed">Landscaping, lawns, stone work and garden maintenance for Kerala homes.</p>
     </div>
@@ -29,12 +28,14 @@ import { telLink } from '../lib/links';
         {contact.phones.map((p) => <li><a class="hover:underline" href={telLink(p.digits)}>{p.display}</a></li>)}
       </ul>
     </div>
-    <div>
-      <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-white">Follow</h2>
-      <a class="mt-4 inline-flex items-center gap-2 text-sm hover:underline" href={contact.instagram.url} target="_blank" rel="noopener">
-        <Icons name="instagram" /> @{contact.instagram.handle}
-      </a>
-    </div>
+    {contact.instagram.url && (
+      <div>
+        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-white">Follow</h2>
+        <a class="mt-4 inline-flex items-center gap-2 text-sm hover:underline" href={contact.instagram.url} target="_blank" rel="noopener">
+          <Icons name="instagram" /> @{contact.instagram.handle}
+        </a>
+      </div>
+    )}
   </div>
   <div class="container-x mt-12"><div class="flex flex-col gap-2 border-t border-white/15 pt-6 text-sm text-white/75 sm:flex-row sm:justify-between">
     <p>© {new Date().getFullYear()} {contact.brand}</p>

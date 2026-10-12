@@ -1,6 +1,6 @@
-# Sreehari Gardens website
+# Vanascape Gardens website
 
-Static marketing site for Sreehari Gardens (SG Garden), built with Astro + Tailwind CSS. No backend, no database.
+Static marketing site for Vanascape Gardens, built with Astro + Tailwind CSS. No backend, no database.
 
 ## Run locally
 
@@ -38,4 +38,4 @@ Open the reel on Instagram, tap Share > Copy link, and paste it into the `reels`
 
 ## Owner TODOs
 
-Search the code for `TODO`. In short: confirm price units; confirm whether +91 85212 96589 is valid; add business address, map embed and geo; add Srihari's photo and own words in About; confirm FAQ answers (service area, timelines, maintenance plans); review the grass descriptions; set the real domain in `SITE_URL` and `robots.txt`.
+Search the code for `TODO`. In short: confirm price units; add business address, map embed and geo; add Vinoth's photo and own words in About; confirm FAQ answers (service area, timelines, maintenance plans); review the grass descriptions; set the real domain in `SITE_URL` and `robots.txt`.

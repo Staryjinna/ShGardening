@@ -7,10 +7,7 @@
  * If this list is empty, the site shows a photo grid that links to the profile.
  */
 export const reels: string[] = [
-  'https://www.instagram.com/reel/DdIxUfmxe0m/',
-  'https://www.instagram.com/reel/DcDGIj1xOJi/',
-  'https://www.instagram.com/reel/DYCJpPVRVux/',
-  'https://www.instagram.com/reel/DZm0yc7zOaZ/',
+  // TODO: add Vanascape reel links here once their Instagram page exists.
 ];
 
 /** Strip tracking parameters and force the canonical reel URL form */

@@ -10,7 +10,7 @@ import monstera from '../assets/photos/project-monstera-side-garden.jpg';
  * All service names and prices live here. Change a number and the cards,
  * price table, WhatsApp messages and FAQ all update.
  *
- * TODO: confirm units with Srihari. The Instagram catalog shows prices without a unit;
+ * TODO: confirm units with Vinoth. The old catalog showed prices without a unit;
  * "per sq ft" is assumed for everything except pebbles (minimum 500 kg).
  */
 export interface Service {
@@ -106,7 +106,7 @@ export const showPrices = true;
 export const formatPrice = (s: Service) => `₹${s.price.toLocaleString('en-IN')} ${s.unit}`;
 
 export const quoteMessage = (s: Service) =>
-  `Hello Sreehari Gardens, I would like a quote for ${s.name}. Could you arrange a free site visit?`;
+  `Hello Vanascape Gardens, I would like a quote for ${s.name}. Could you arrange a free site visit?`;
 
 /** Project types shown on the home page (from portfolio photos) */
 export const projectTypes = [

@@ -11,26 +11,23 @@ export interface Phone {
 }
 
 export const contact = {
-  brand: 'Sreehari Gardens',
-  shortBrand: 'SG Garden',
-  owner: 'Srihari',
+  brand: 'Vanascape Gardens',
+  shortBrand: 'Vanascape',
+  owner: 'Vinoth',
   projectsCompleted: '100+',
   areaServed: 'Kerala',
 
   phones: [
-    { label: 'Main number / WhatsApp', display: '+91 89212 96589', digits: '918921296589' },
-    { label: 'Phone', display: '+91 88918 25002', digits: '918891825002' },
-    { label: 'Phone', display: '+91 85477 40238', digits: '918547740238' },
-    // TODO: +91 85212 96589 appears on only one flyer and may be a typo of the main number.
-    // Add it here only after Srihari confirms it.
+    { label: 'Main number / WhatsApp', display: '+91 73584 70999', digits: '917358470999' },
   ] satisfies Phone[],
 
   /** Number the WhatsApp buttons and the enquiry form open (digits only, no + or spaces) */
-  whatsapp: '918921296589',
+  whatsapp: '917358470999',
 
+  // TODO: add Vanascape's Instagram page here (handle and full URL). While url is empty, all Instagram links and the reels section are hidden.
   instagram: {
-    handle: 'sreehari_gardens',
-    url: 'https://www.instagram.com/sreehari_gardens/',
+    handle: '',
+    url: '',
   },
 
   // TODO: add the business address (e.g. "Town, District, Kerala PIN"). Leave empty to hide it.

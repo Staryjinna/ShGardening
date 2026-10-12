@@ -1,7 +1,9 @@
 ---
 import { Picture } from 'astro:assets';
-import logo from '../assets/brand/logo-sg-garden.jpg';
+import full from '../assets/brand/logo-vanascape.png';
+import mark from '../assets/brand/logo-mark.png';
 import { contact } from '../data/contact';
-const { size = 48, priority = false } = Astro.props;
+interface Props { size?: number; /** "mark" = icon only (small sizes), "full" = icon + wordmark */ variant?: 'mark' | 'full'; priority?: boolean; }
+const { size = 48, variant = 'mark', priority = false } = Astro.props;
 ---
-<Picture src={logo} alt={`${contact.shortBrand} logo`} formats={['avif']} fallbackFormat="webp" widths={[size, size * 2]} sizes={`${size}px`} width={size} height={size} class="rounded-full" loading={priority ? 'eager' : 'lazy'} />
+<Picture src={variant === 'full' ? full : mark} alt={`${contact.brand} logo`} formats={['avif']} fallbackFormat="webp" widths={[size, size * 2]} sizes={`${size}px`} width={size} height={size} class="rounded-xl bg-[#fbf9f1]" loading={priority ? 'eager' : 'lazy'} />

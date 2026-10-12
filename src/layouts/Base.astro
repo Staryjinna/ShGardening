@@ -27,7 +27,7 @@ const schema = {
   contactPoint: contact.phones.map((p) => ({ '@type': 'ContactPoint', telephone: `+${p.digits}`, contactType: 'customer service', areaServed: 'IN-KL' })),
   founder: { '@type': 'Person', name: contact.owner },
   areaServed: { '@type': 'State', name: contact.areaServed },
-  sameAs: [contact.instagram.url],
+  ...(contact.instagram.url ? { sameAs: [contact.instagram.url] } : {}),
   makesOffer: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name } })),
   ...(contact.address ? { address: { '@type': 'PostalAddress', streetAddress: contact.address, addressCountry: 'IN' } } : {}),
   ...(contact.geo ? { geo: { '@type': 'GeoCoordinates', latitude: contact.geo.lat, longitude: contact.geo.lng } } : {}),
