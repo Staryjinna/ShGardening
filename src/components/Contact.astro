@@ -8,22 +8,22 @@ import { waLink, telLink } from '../lib/links';
   <div class="container-x grid gap-10 lg:grid-cols-2">
     <div>
       <p class="eyebrow">Contact</p>
-      <h2 class="mt-2 text-3xl font-semibold text-navy-800 sm:text-4xl">Book your free site visit</h2>
-      <p class="mt-3 text-granite-700">Give your garden new life. Message or call us and Vinoth will arrange a visit.</p>
+      <h2 class="mt-2 text-3xl font-semibold text-forest-800 sm:text-4xl">Book your free site visit</h2>
+      <p class="mt-3 text-granite-700">Give your garden new life. Message or call us and Vinoth will arrange a visit in Coimbatore.</p>
       <a href={waLink('Hello Vanascape Gardens, I would like a free site visit.')} target="_blank" rel="noopener" class="btn btn-wa mt-6"><Icons name="whatsapp" /> Chat on WhatsApp</a>
       <ul class="mt-8 space-y-3">
         {contact.phones.map((p) => (
-          <li><a href={telLink(p.digits)} class="inline-flex items-center gap-3 text-lg font-semibold text-navy-800 hover:underline"><Icons name="phone" class="h-5 w-5 text-leaf-700" /> {p.display}</a></li>
+          <li><a href={telLink(p.digits)} class="inline-flex items-center gap-3 text-lg font-semibold text-forest-800 hover:underline"><Icons name="phone" class="h-5 w-5 text-sage-700" /> {p.display}</a></li>
         ))}
       </ul>
-      {contact.address && <p class="mt-6 flex gap-2 text-granite-900"><Icons name="pin" class="mt-1 h-5 w-5 shrink-0 text-laterite-600" />{contact.address}</p>}
+      {contact.address && <p class="mt-6 flex gap-2 text-granite-900"><Icons name="pin" class="mt-1 h-5 w-5 shrink-0 text-clay-600" />{contact.address}</p>}
       {contact.mapEmbedUrl
         ? <iframe title="Map showing Vanascape Gardens" src={contact.mapEmbedUrl} loading="lazy" class="mt-6 h-64 w-full rounded-xl border-0" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        : import.meta.env.DEV && <div class="mt-6 rounded-xl border-2 border-dashed border-laterite-500 p-6 text-sm text-laterite-700">DEV ONLY: TODO add business address and Google Maps embed URL in src/data/contact.ts</div>}
+        : import.meta.env.DEV && <div class="mt-6 rounded-xl border-2 border-dashed border-clay-500 p-6 text-sm text-clay-700">DEV ONLY: TODO add business address and Google Maps embed URL in src/data/contact.ts</div>}
     </div>
 
     <form id="enquiry" class="rounded-2xl bg-cream p-6 ring-1 ring-granite-100" data-wa={contact.whatsapp}>
-      <h3 class="text-xl font-semibold text-navy-800">Send an enquiry on WhatsApp</h3>
+      <h3 class="text-xl font-semibold text-forest-800">Send an enquiry on WhatsApp</h3>
       <p class="mt-1 text-sm text-granite-700">Fill this in and WhatsApp opens with your message ready to send.</p>
       <div class="mt-5 grid gap-4 sm:grid-cols-2">
         <label class="block text-sm font-semibold">Name

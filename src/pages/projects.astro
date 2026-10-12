@@ -1,33 +1,32 @@
 ---
 import Base from '../layouts/Base.astro';
 import PhotoGrid from '../components/PhotoGrid.astro';
+import PageHeader from '../components/PageHeader.astro';
 import Lightbox from '../components/Lightbox.astro';
 import Icons from '../components/Icons.astro';
 import { projects, categories } from '../data/projects';
 import { waLink } from '../lib/links';
 ---
 <Base
-  title="Garden Projects in Kerala: Lawns, Stone Work, Courtyards | Vanascape Gardens"
-  description="Browse garden design projects by Vanascape Gardens: pearl grass and Mexican grass lawns, Bangalore stone pathways, courtyard gardens and tropical planting across Kerala."
+  title="Garden Projects in Coimbatore: Lawns, Stone Work, Courtyards | Vanascape Gardens"
+  description="Browse garden design photos from Vanascape Gardens: lawns, stone pathways, courtyard gardens and tropical planting in Coimbatore."
   path="/projects/"
 >
-  <section class="section stone-grid">
+  <PageHeader eyebrow="Our work" title="Garden projects" intro="Lawns, stone pathways, courtyards and planting." />
+  <section class="section dots">
     <div class="container-x">
-      <p class="eyebrow">Projects</p>
-      <h1 class="mt-2 text-4xl font-semibold text-navy-800 sm:text-5xl">Our garden projects</h1>
-      <p class="mt-3 max-w-2xl text-granite-700">Lawns, stone pathways, courtyards and planting for Kerala homes.</p>
 
       <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter projects" id="filters">
         {categories.map((c, i) => (
           <button type="button" data-filter={c.id} aria-pressed={i === 0 ? 'true' : 'false'}
-            class="rounded-full border-2 border-navy-700 px-4 py-2 text-sm font-bold text-navy-700 transition aria-pressed:bg-navy-700 aria-pressed:text-white">{c.label}</button>
+            class="rounded-full border-2 border-forest-700 px-4 py-2 text-sm font-bold text-forest-700 transition aria-pressed:bg-forest-700 aria-pressed:text-white">{c.label}</button>
         ))}
       </div>
       <p id="filter-status" class="sr-only" aria-live="polite"></p>
 
       <div class="mt-8" id="gallery"><PhotoGrid items={projects} group="all" /></div>
 
-      <div class="mt-14 rounded-2xl bg-navy-800 p-8 text-center text-white on-dark">
+      <div class="mt-14 rounded-2xl bg-forest-800 p-8 text-center text-white on-dark">
         <h2 class="text-2xl font-semibold">Like what you see?</h2>
         <p class="mt-2 text-white/85">Message us for a free site visit and quote.</p>
         <a href={waLink('Hello Vanascape Gardens, I saw your projects and would like a free site visit.')} target="_blank" rel="noopener" class="btn btn-wa mt-5"><Icons name="whatsapp" /> WhatsApp for a free site visit</a>

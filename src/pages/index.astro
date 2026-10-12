@@ -2,31 +2,19 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import TrustStrip from '../components/TrustStrip.astro';
-import Services from '../components/Services.astro';
-import FeaturedProjects from '../components/FeaturedProjects.astro';
-import GrassGuide from '../components/GrassGuide.astro';
-import HowWeWork from '../components/HowWeWork.astro';
-import About from '../components/About.astro';
+import ExploreTiles from '../components/ExploreTiles.astro';
+import CtaBand from '../components/CtaBand.astro';
 import Reels from '../components/Reels.astro';
-import FAQ from '../components/FAQ.astro';
-import Contact from '../components/Contact.astro';
 import { contact } from '../data/contact';
-import Lightbox from '../components/Lightbox.astro';
 ---
 <Base
-  title="Landscaping & Garden Design in Kerala | Vanascape Gardens"
-  description="Landscaping Kerala: Mexican grass and pearl grass lawns, Bangalore stone work, courtyards, pebble paths and garden maintenance. 100+ projects. Free site visit."
+  title="Landscaping & Garden Design in Coimbatore | Vanascape Gardens"
+  description="Vanascape Gardens: landscaping and garden design in Coimbatore. Mexican grass and pearl grass lawns, Bangalore stone work, courtyards, pebble paths and garden maintenance. Free site visit."
   path="/"
 >
   <Hero />
   <TrustStrip />
-  <Services />
-  <FeaturedProjects />
-  <GrassGuide />
-  <HowWeWork />
-  <About />
+  <ExploreTiles />
   {contact.instagram.url && <Reels />}
-  <FAQ />
-  <Contact />
-  <Lightbox />
+  <CtaBand />
 </Base>

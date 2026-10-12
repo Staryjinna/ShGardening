@@ -1,17 +1,18 @@
 ---
 import { contact } from '../data/contact';
 const items = [
-  { big: contact.projectsCompleted, small: 'projects completed' },
-  { big: 'Owner-led', small: `${contact.owner} personally oversees every project` },
-  { big: 'Budget friendly', small: 'honest quotes after a free site visit' },
-  { big: 'Free maintenance', small: 'one visit included with Mexican grass lawns' },
+  ...(contact.projectsCompleted ? [{ big: contact.projectsCompleted, small: 'projects completed' }] : []),
+  { big: 'Owner-led', small: `${contact.owner} leads every project` },
+  { big: 'Free site visit', small: 'we look at your space before quoting' },
+  { big: 'Lawns to stone', small: 'grass, stone, pebbles and planting' },
+  { big: 'Maintenance', small: 'upkeep to keep your garden fresh' },
 ];
 ---
-<section aria-label="Why choose us" class="border-b border-granite-100 bg-white">
+<section aria-label="Why choose us" class="border-y border-granite-100 bg-white">
   <ul class="container-x grid grid-cols-2 gap-x-4 gap-y-6 py-8 lg:grid-cols-4">
-    {items.map((i) => (
+    {items.slice(0, 4).map((i) => (
       <li class="reveal">
-        <p class="font-display text-2xl font-semibold text-navy-700">{i.big}</p>
+        <p class="font-display text-3xl font-bold text-forest-700">{i.big}</p>
         <p class="mt-1 text-sm text-granite-700">{i.small}</p>
       </li>
     ))}

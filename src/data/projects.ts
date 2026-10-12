@@ -44,10 +44,10 @@ export const projects: Project[] = [
   },
   {
     id: 'stone-grass-driveway',
-    title: 'Stone slabs set in grass at a laterite-red home',
+    title: 'Stone slabs set in grass at a clay-red home',
     category: 'stone',
     image: driveway,
-    alt: 'Stone slabs set in grass in front of a laterite-red modern house',
+    alt: 'Stone slabs set in grass in front of a clay-red modern house',
     pos: '50% 60%',
     featured: true,
   },
@@ -89,10 +89,10 @@ export const projects: Project[] = [
   },
   {
     id: 'stone-grass-driveway-wide',
-    title: 'Stone-and-grass driveway with Kerala treeline',
+    title: 'Stone-and-grass driveway with treeline',
     category: 'stone',
     image: drivewayWide,
-    alt: 'Wide view of a stone-and-grass driveway with the Kerala treeline behind',
+    alt: 'Wide view of a stone-and-grass driveway with a treeline behind',
     pos: '50% 60%',
   },
   {

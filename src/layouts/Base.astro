@@ -24,9 +24,9 @@ const schema = {
   logo: `${site}/icon-512.png`,
   description,
   telephone: `+${contact.phones[0].digits}`,
-  contactPoint: contact.phones.map((p) => ({ '@type': 'ContactPoint', telephone: `+${p.digits}`, contactType: 'customer service', areaServed: 'IN-KL' })),
+  contactPoint: contact.phones.map((p) => ({ '@type': 'ContactPoint', telephone: `+${p.digits}`, contactType: 'customer service', areaServed: 'Coimbatore' })),
   founder: { '@type': 'Person', name: contact.owner },
-  areaServed: { '@type': 'State', name: contact.areaServed },
+  areaServed: { '@type': 'City', name: contact.city },
   ...(contact.instagram.url ? { sameAs: [contact.instagram.url] } : {}),
   makesOffer: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name } })),
   ...(contact.address ? { address: { '@type': 'PostalAddress', streetAddress: contact.address, addressCountry: 'IN' } } : {}),
@@ -41,7 +41,7 @@ const schema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#1f4e79" />
+    <meta name="theme-color" content="#27391c" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -62,8 +62,8 @@ const schema = {
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" /></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600&display=swap" /></noscript>
     <script is:inline>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>

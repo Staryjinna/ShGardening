@@ -14,8 +14,11 @@ export const contact = {
   brand: 'Vanascape Gardens',
   shortBrand: 'Vanascape',
   owner: 'Vinoth',
-  projectsCompleted: '100+',
-  areaServed: 'Kerala',
+  // TODO: Vinoth to confirm a real project count (e.g. '50+'). Leave empty to hide the claim.
+  projectsCompleted: '',
+  city: 'Coimbatore',
+  region: 'Tamil Nadu',
+  areaServed: 'Coimbatore',
 
   phones: [
     { label: 'Main number / WhatsApp', display: '+91 73584 70999', digits: '917358470999' },
@@ -30,7 +33,7 @@ export const contact = {
     url: '',
   },
 
-  // TODO: add the business address (e.g. "Town, District, Kerala PIN"). Leave empty to hide it.
+  // TODO: add the business address (e.g. "Area, Coimbatore, Tamil Nadu PIN"). Leave empty to hide it.
   address: '',
   // TODO: paste the Google Maps "Embed a map" iframe src URL once the address is known. Empty hides the map.
   mapEmbedUrl: '',

@@ -1,114 +1,69 @@
-import type { ImageMetadata } from 'astro';
-import lawn from '../assets/photos/project-lawn-stepping-stones.jpg';
-import driveway from '../assets/photos/project-stone-grass-driveway.jpg';
-import drivewayWide from '../assets/photos/project-stone-grass-driveway-wide.jpg';
-import pebblePath from '../assets/photos/project-pebble-pathway-entrance.jpg';
-import courtyard from '../assets/photos/project-courtyard-seating-planter.jpg';
-import monstera from '../assets/photos/project-monstera-side-garden.jpg';
-
 /**
- * All service names and prices live here. Change a number and the cards,
- * price table, WhatsApp messages and FAQ all update.
- *
- * TODO: confirm units with Vinoth. The old catalog showed prices without a unit;
- * "per sq ft" is assumed for everything except pebbles (minimum 500 kg).
+ * Services shown as button tiles on the Services page.
+ * Prices are intentionally not shown anywhere: this is information only.
+ * Edit names and descriptions here; everything else updates.
  */
 export interface Service {
   id: string;
   name: string;
+  /** One-line summary shown on the tile */
+  summary: string;
+  /** Full description shown in the details popup */
   description: string;
   highlights?: string[];
-  price: number;
-  /** Text shown after the amount, e.g. "/ sq ft" */
-  unit: string;
-  /** Show "Price may change according to market rate" */
-  marketRate?: boolean;
-  image: ImageMetadata;
-  imageAlt: string;
-  /** CSS object-position focal point */
-  imagePos?: string;
 }
 
 export const services: Service[] = [
   {
     id: 'mexican-grass',
     name: 'Mexican grass',
-    description: 'Mexican grass complete work, from levelling to planting.',
-    highlights: ['One free maintenance included'],
-    price: 50,
-    unit: '/ sq ft',
-    image: lawn,
-    imageAlt: 'Green lawn with grey stepping stones beside a white house',
-    imagePos: '50% 60%',
+    summary: 'Complete Mexican grass lawn work.',
+    description: 'Complete Mexican grass lawn work, from levelling and soil preparation to planting.',
+    highlights: ['Hardy, wider-leaved lawn grass', 'Suits family lawns and play areas'],
   },
   {
     id: 'pearl-grass',
-    name: 'Pearl grass (sheet work)',
+    name: 'Pearl grass',
+    summary: 'Sheet work and splitting & planting.',
     description:
-      'Complete pearl grass sheet work. Varieties: Pearl grass, Thailand Pearl and Variegated Pearl grass. Pearl grass splitting and planting also available.',
-    highlights: ['Fast growth, low maintenance', 'Budget friendly'],
-    price: 45,
-    unit: '/ sq ft',
-    image: drivewayWide,
-    imageAlt: 'Wide view of a stone-and-grass driveway with a Kerala treeline',
-    imagePos: '50% 65%',
+      'Complete pearl grass sheet work. Varieties: Pearl grass, Thailand Pearl and Variegated Pearl grass. Pearl grass splitting and planting is also available.',
+    highlights: ['Fast growth, low maintenance', 'Neat, dense-looking lawns'],
   },
   {
     id: 'bangalore-stone',
-    name: 'Bangalore stone (complete work)',
+    name: 'Bangalore stone',
+    summary: 'Natural stone work with grass between stones.',
     description:
       'Natural stone work with artificial or natural grass between the stones. Finishes: Bangalore Boss Cut, Bangalore Half Cut and Bottom Flamed, in different varieties and sizes.',
-    price: 165,
-    unit: '/ sq ft',
-    marketRate: true,
-    image: driveway,
-    imageAlt: 'Stone slabs set in grass in front of a laterite-red modern house',
-    imagePos: '50% 62%',
+    highlights: ['Boss Cut, Half Cut and Bottom Flamed finishes', 'Several varieties and sizes'],
   },
   {
     id: 'tandur-stone',
     name: 'Tandur stone',
+    summary: 'Tandur stone floors, courtyards and paths.',
     description: 'Tandur stone complete work for floors, courtyards and pathways.',
-    price: 125,
-    unit: '/ sq ft',
-    marketRate: true,
-    image: courtyard,
-    imageAlt: 'Courtyard garden with stone flooring and a built-in planter seat',
-    imagePos: '50% 78%',
   },
   {
     id: 'pebbles',
     name: 'Pebbles',
+    summary: 'Decorative pebbles for paths and borders.',
     description: 'Decorative pebbles for paths, borders and planters. Minimum order 500 kg.',
-    price: 5000,
-    unit: '(min. 500 kg)',
-    marketRate: true,
-    image: pebblePath,
-    imageAlt: 'Pebble path with stone slabs leading to a gate',
-    imagePos: '50% 70%',
+    highlights: ['Minimum order 500 kg'],
   },
   {
     id: 'garden-maintenance',
     name: 'Garden maintenance',
+    summary: 'Cutting, clearing, pruning, manuring, weeding.',
     description:
-      'Grass cutting, land clearance, pruning, manuring, weeding and upkeep for all types of grass. Professional and budget friendly.',
-    price: 5,
-    unit: '/ sq ft',
-    image: monstera,
-    imageAlt: 'Well-kept side garden with monstera and bird-of-paradise plants',
-    imagePos: '50% 55%',
+      'Professional garden maintenance: grass cutting, land clearance, pruning, manuring, weeding and upkeep for all types of grass.',
+    highlights: ['Grass cutting and land clearance', 'Pruning, manuring and weeding'],
   },
 ];
 
-/** Prices are hidden on the site. Set to true to show them again on the cards and price table. */
-export const showPrices = true;
-
-export const formatPrice = (s: Service) => `₹${s.price.toLocaleString('en-IN')} ${s.unit}`;
-
 export const quoteMessage = (s: Service) =>
-  `Hello Vanascape Gardens, I would like a quote for ${s.name}. Could you arrange a free site visit?`;
+  `Hello Vanascape Gardens, I would like to know more about ${s.name}. Could you arrange a free site visit?`;
 
-/** Project types shown on the home page (from portfolio photos) */
+/** Project types shown on the About page */
 export const projectTypes = [
   'Landscape design',
   'Courtyard & interior gardens',

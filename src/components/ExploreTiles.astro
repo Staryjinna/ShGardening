@@ -1,0 +1,26 @@
+---
+const tiles = [
+  { n: '01', t: 'Services', d: 'Lawns, stone work, pebbles and garden maintenance.', href: '/services/' },
+  { n: '02', t: 'Projects', d: 'Browse garden photos by category.', href: '/projects/' },
+  { n: '03', t: 'About', d: 'Meet the owner and see how we work.', href: '/about/' },
+  { n: '04', t: 'Contact', d: 'Call, WhatsApp or send an enquiry.', href: '/contact/' },
+];
+---
+<section class="section dots" aria-labelledby="explore-h">
+  <div class="container-x">
+    <p class="eyebrow">Explore</p>
+    <h2 id="explore-h" class="h-display mt-2 max-w-2xl text-4xl text-forest-800 sm:text-5xl">Where would you like to go?</h2>
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {tiles.map((t) => (
+        <li class="reveal">
+          <a href={t.href} class="tile-btn h-full">
+            <span class="tile-num">{t.n}</span>
+            <span class="font-display text-3xl font-bold">{t.t}</span>
+            <span class="tile-sub">{t.d}</span>
+            <span class="tile-go">Open →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

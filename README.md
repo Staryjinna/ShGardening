@@ -21,7 +21,7 @@ Set the environment variable `SITE_URL` (for example `https://www.yourdomain.in`
 | What | File |
 |---|---|
 | Phone numbers, WhatsApp number, Instagram, address, map | `src/data/contact.ts` |
-| Services (prices are hidden; set `showPrices = true` to show them) | `src/data/services.ts` |
+| Services (info only, no prices) | `src/data/services.ts` |
 | Portfolio photos and categories | `src/data/projects.ts` |
 | Instagram reels | `src/data/reels.ts` |
 | FAQ | `src/data/faq.ts` |
@@ -38,4 +38,4 @@ Open the reel on Instagram, tap Share > Copy link, and paste it into the `reels`
 
 ## Owner TODOs
 
-Search the code for `TODO`. In short: confirm price units; add business address, map embed and geo; add Vinoth's photo and own words in About; confirm FAQ answers (service area, timelines, maintenance plans); review the grass descriptions; set the real domain in `SITE_URL` and `robots.txt`.
+Search the code for `TODO`. In short: add business address, map embed and geo; add Vinoth's photo and own words in About; confirm FAQ answers (service area, timelines, maintenance plans); review the grass descriptions; set the real domain in `SITE_URL` and `robots.txt`.
