@@ -1,4 +1,5 @@
 ---
+import Pic from './Pic.astro';
 import { services, quoteMessage } from '../data/services';
 import { waLink } from '../lib/links';
 const data = services.map((s) => ({ id: s.id, name: s.name, description: s.description, highlights: s.highlights ?? [], wa: waLink(quoteMessage(s)) }));
@@ -9,11 +10,14 @@ const data = services.map((s) => ({ id: s.id, name: s.name, description: s.descr
     <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((s, i) => (
         <li class="reveal">
-          <button type="button" class="tile-btn h-full" data-service={s.id} aria-haspopup="dialog">
-            <span class="tile-num">{String(i + 1).padStart(2, '0')}</span>
-            <span class="font-display text-3xl font-bold">{s.name}</span>
-            <span class="tile-sub">{s.summary}</span>
-            <span class="tile-go">View details +</span>
+          <button type="button" class="tile-btn h-full !gap-0 overflow-hidden !p-0" data-service={s.id} aria-haspopup="dialog">
+            <span class="photo-tile block aspect-[4/3] w-full overflow-hidden"><Pic src={s.image} alt={s.imageAlt} pos={s.imagePos} sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 100vw" widths={[360, 540, 896]} /></span>
+            <span class="flex flex-1 flex-col gap-1.5 p-5">
+              <span class="tile-num !text-base">{String(i + 1).padStart(2, '0')}</span>
+              <span class="font-display text-3xl font-bold">{s.name}</span>
+              <span class="tile-sub">{s.summary}</span>
+              <span class="tile-go">View details +</span>
+            </span>
           </button>
         </li>
       ))}

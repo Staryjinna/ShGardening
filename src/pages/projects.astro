@@ -4,7 +4,7 @@ import PhotoGrid from '../components/PhotoGrid.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Lightbox from '../components/Lightbox.astro';
 import Icons from '../components/Icons.astro';
-import { projects, categories } from '../data/projects';
+import { projects, categories, galleryNote } from '../data/projects';
 import { waLink } from '../lib/links';
 ---
 <Base
@@ -12,7 +12,7 @@ import { waLink } from '../lib/links';
   description="Browse garden design photos from Vanascape Gardens: lawns, stone pathways, courtyard gardens and tropical planting in Coimbatore."
   path="/projects/"
 >
-  <PageHeader eyebrow="Our work" title="Garden projects" intro="Lawns, stone pathways, courtyards and planting." />
+  <PageHeader eyebrow="Our work" title="Garden styles" intro="Modern modular and traditional gardens: lawns, stone pathways, courtyards and planting." />
   <section class="section dots">
     <div class="container-x">
 
@@ -25,6 +25,7 @@ import { waLink } from '../lib/links';
       <p id="filter-status" class="sr-only" aria-live="polite"></p>
 
       <div class="mt-8" id="gallery"><PhotoGrid items={projects} group="all" /></div>
+      {galleryNote && <p class="mt-4 text-sm text-granite-700">{galleryNote}</p>}
 
       <div class="mt-14 rounded-2xl bg-forest-800 p-8 text-center text-white on-dark">
         <h2 class="text-2xl font-semibold">Like what you see?</h2>
@@ -45,11 +46,13 @@ import { waLink } from '../lib/links';
       buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       let n = 0;
       items.forEach((li) => {
-        const show = f === 'all' || li.dataset.cat === f;
+        const show = f === 'all' || (li.dataset.cat || '').split(' ').includes(f || '');
         li.hidden = !show;
         if (show) n++;
       });
       status.textContent = `${n} projects shown`;
     }),
   );
+  const preset = new URLSearchParams(location.search).get('style');
+  if (preset) document.querySelector<HTMLButtonElement>(`[data-filter="${preset}"]`)?.click();
 </script>

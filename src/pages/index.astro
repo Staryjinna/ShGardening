@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import TrustStrip from '../components/TrustStrip.astro';
+import StylesSplit from '../components/StylesSplit.astro';
 import ExploreTiles from '../components/ExploreTiles.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Reels from '../components/Reels.astro';
@@ -14,6 +15,7 @@ import { contact } from '../data/contact';
 >
   <Hero />
   <TrustStrip />
+  <StylesSplit />
   <ExploreTiles />
   {contact.instagram.url && <Reels />}
   <CtaBand />

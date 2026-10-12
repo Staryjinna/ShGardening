@@ -1,106 +1,54 @@
 import type { ImageMetadata } from 'astro';
-import courtyardPergola from '../assets/photos/project-courtyard-planter-pergola.jpg';
-import courtyardSeating from '../assets/photos/project-courtyard-seating-planter.jpg';
-import drivewayWide from '../assets/photos/project-stone-grass-driveway-wide.jpg';
-import driveway from '../assets/photos/project-stone-grass-driveway.jpg';
-import lawn from '../assets/photos/project-lawn-stepping-stones.jpg';
-import pebblePath from '../assets/photos/project-pebble-pathway-entrance.jpg';
-import tropical from '../assets/photos/project-tropical-plants-closeup.jpg';
-import monstera from '../assets/photos/project-monstera-side-garden.jpg';
+import hero from '../assets/photos/hero-modern-villa-garden.jpg';
+import modernCourtyard from '../assets/photos/modern-courtyard-planter-seating.jpg';
+import tradCourtyard from '../assets/photos/traditional-courtyard-tulsi.jpg';
+import modernDriveway from '../assets/photos/modern-stone-slab-driveway.jpg';
+import tradPath from '../assets/photos/traditional-pebble-path.jpg';
+import lawn from '../assets/photos/lawn-stepping-stones.jpg';
+import tropical from '../assets/photos/tropical-foliage.jpg';
+import terrace from '../assets/photos/modern-terrace-planters.jpg';
+import tradHouse from '../assets/photos/traditional-house-garden.jpg';
 
-export type Category = 'lawns' | 'stone' | 'courtyards' | 'planting';
+export type Category = 'modern' | 'traditional' | 'lawns' | 'stone' | 'courtyards' | 'planting';
 
 export const categories: { id: 'all' | Category; label: string }[] = [
   { id: 'all', label: 'All' },
+  { id: 'modern', label: 'Modern & Modular' },
+  { id: 'traditional', label: 'Traditional' },
   { id: 'lawns', label: 'Lawns' },
   { id: 'stone', label: 'Stone & Pathways' },
   { id: 'courtyards', label: 'Courtyards' },
   { id: 'planting', label: 'Planting' },
 ];
 
+/**
+ * The images below are AI-generated concept visuals that illustrate the garden styles on offer.
+ * TODO: replace them with real Vanascape project photos as they become available, then clear this note.
+ * Set to '' to hide the caption.
+ */
+export const galleryNote = 'Images are AI-generated concept visuals showing the garden styles we design.';
+
 export interface Project {
   id: string;
   title: string;
-  category: Category;
+  tags: Category[];
   image: ImageMetadata;
   alt: string;
   /** CSS object-position focal point for cropped tiles */
   pos?: string;
-  /** Optional. Do not invent locations; only add real ones. */
-  location?: string;
-  /** Appears in the home page "Featured projects" grid */
+  /** Tailwind aspect class override for the gallery tile */
+  aspect?: string;
   featured?: boolean;
 }
 
 export const projects: Project[] = [
-  {
-    id: 'courtyard-planter-pergola',
-    title: 'Courtyard garden with granite planter seating',
-    category: 'courtyards',
-    image: courtyardPergola,
-    alt: 'Open-to-sky courtyard with a pergola, red jaali wall, granite planter seating and tropical plants',
-    pos: '50% 55%',
-    featured: true,
-  },
-  {
-    id: 'stone-grass-driveway',
-    title: 'Stone slabs set in grass at a clay-red home',
-    category: 'stone',
-    image: driveway,
-    alt: 'Stone slabs set in grass in front of a clay-red modern house',
-    pos: '50% 60%',
-    featured: true,
-  },
-  {
-    id: 'lawn-stepping-stones',
-    title: 'Lawn with grey stepping stones',
-    category: 'lawns',
-    image: lawn,
-    alt: 'Green lawn with grey stepping stones beside a white house',
-    pos: '50% 60%',
-    featured: true,
-  },
-  {
-    id: 'monstera-side-garden',
-    title: 'Side garden with monstera and bird-of-paradise',
-    category: 'planting',
-    image: monstera,
-    alt: 'Side garden planted with monstera and bird-of-paradise',
-    pos: '50% 50%',
-    featured: true,
-  },
-  {
-    id: 'pebble-pathway-entrance',
-    title: 'Pebble path with stone slabs to the gate',
-    category: 'stone',
-    image: pebblePath,
-    alt: 'Pebble pathway with stone slabs leading to the entrance gate',
-    pos: '50% 65%',
-    featured: true,
-  },
-  {
-    id: 'courtyard-seating-planter',
-    title: 'Courtyard seating and planter, second angle',
-    category: 'courtyards',
-    image: courtyardSeating,
-    alt: 'Courtyard with built-in planter seating and tropical plants seen from another angle',
-    pos: '50% 60%',
-    featured: true,
-  },
-  {
-    id: 'stone-grass-driveway-wide',
-    title: 'Stone-and-grass driveway with treeline',
-    category: 'stone',
-    image: drivewayWide,
-    alt: 'Wide view of a stone-and-grass driveway with a treeline behind',
-    pos: '50% 60%',
-  },
-  {
-    id: 'tropical-plants-closeup',
-    title: 'Tropical foliage close-up: calathea and companions',
-    category: 'planting',
-    image: tropical,
-    alt: 'Close-up of calathea and other tropical foliage',
-    pos: '50% 50%',
-  },
+  { id: 'hero-villa-garden', title: 'Modern villa garden with stone stepping path', tags: ['modern', 'lawns'], image: hero, alt: 'Modern villa garden with a lawn, stone stepping path and tropical planting', pos: '50% 60%', aspect: 'aspect-[4/3]', featured: true },
+  { id: 'modern-courtyard', title: 'Modern courtyard with planter seating', tags: ['modern', 'courtyards'], image: modernCourtyard, alt: 'Open-to-sky courtyard with a pergola, built-in planter seating and palms', pos: '50% 55%', featured: true },
+  { id: 'traditional-courtyard', title: 'Traditional courtyard with tulsi maadam', tags: ['traditional', 'courtyards'], image: tradCourtyard, alt: 'Traditional South Indian courtyard with a tulsi pedestal, brass lamp and tiled roof', pos: '50% 55%', featured: true },
+  { id: 'modern-driveway', title: 'Stone slab pathway set in grass', tags: ['modern', 'stone'], image: modernDriveway, alt: 'Large grey stone slabs set in a grass strip leading to a contemporary home', pos: '50% 60%', featured: true },
+  { id: 'traditional-path', title: 'Pebble and stone path to the gate', tags: ['traditional', 'stone'], image: tradPath, alt: 'Pebble pathway with stone slabs between tropical plants leading to a gate', pos: '50% 55%', featured: true },
+  { id: 'lawn-stepping-stones', title: 'Lawn with curved stepping stones', tags: ['modern', 'lawns'], image: lawn, alt: 'Green lawn with grey stepping stones beside a contemporary house', pos: '50% 60%', featured: true },
+  { id: 'tropical-foliage', title: 'Tropical foliage planting', tags: ['planting'], image: tropical, alt: 'Monstera, calathea and ferns beside a dark stone border', pos: '50% 50%' },
+  { id: 'modern-terrace', title: 'Terrace garden with modular planters', tags: ['modern', 'planting'], image: terrace, alt: 'Terrace garden with modular planters, palms and a seating nook at sunset', pos: '50% 55%' },
+  { id: 'traditional-house-garden', title: 'Traditional garden with palms and pond', tags: ['traditional', 'lawns'], image: tradHouse, alt: 'Traditional South Indian house with a lawn, coconut palms and a small pond', pos: '50% 60%', aspect: 'aspect-[4/3]' },
 ];

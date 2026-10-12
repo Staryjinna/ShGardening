@@ -1,0 +1,28 @@
+---
+import Pic from './Pic.astro';
+import modern from '../assets/photos/modern-courtyard-planter-seating.jpg';
+import traditional from '../assets/photos/traditional-courtyard-tulsi.jpg';
+const styles = [
+  { t: 'Modern & Modular', d: 'Clean lines, stone slabs, built-in planters and low-upkeep greenery for contemporary homes and terraces.', img: modern, alt: 'Modern courtyard with a pergola and planter seating', href: '/projects/?style=modern', pos: '50% 55%' },
+  { t: 'Traditional', d: 'Courtyards, pebble paths, tulsi maadams and flowering shrubs rooted in classic South Indian homes.', img: traditional, alt: 'Traditional courtyard with a tulsi pedestal and brass lamp', href: '/projects/?style=traditional', pos: '50% 55%' },
+];
+---
+<section class="section">
+  <div class="container-x">
+    <p class="eyebrow">Two ways to design your garden</p>
+    <h2 class="h-display mt-2 max-w-2xl text-4xl text-forest-800 sm:text-5xl">Modern or traditional, made to suit your home</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {styles.map((s) => (
+        <a href={s.href} class="photo-tile reveal group relative block aspect-[4/5] overflow-hidden rounded-3xl shadow-lg sm:aspect-[5/6]">
+          <Pic src={s.img} alt={s.alt} pos={s.pos} sizes="(min-width: 768px) 50vw, 100vw" widths={[540, 896]} />
+          <div class="absolute inset-0 bg-gradient-to-t from-forest-900/90 via-forest-900/20 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-7 text-white">
+            <h3 class="h-display text-4xl">{s.t}</h3>
+            <p class="mt-2 max-w-md text-white/90">{s.d}</p>
+            <span class="mt-4 inline-block border-b border-white/70 pb-0.5 text-sm font-semibold uppercase tracking-widest">See this style →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

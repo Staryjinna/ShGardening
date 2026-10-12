@@ -1,24 +1,24 @@
 ---
+import Pic from './Pic.astro';
 import Icons from './Icons.astro';
-import Logo from './Logo.astro';
+import hero from '../assets/photos/hero-modern-villa-garden.jpg';
 import { contact } from '../data/contact';
 import { waLink } from '../lib/links';
 ---
-<section class="on-dark relative isolate overflow-hidden bg-forest-800 text-white">
-  <div class="dots-light absolute inset-0 -z-10" aria-hidden="true"></div>
-  <div class="container-x grid items-center gap-10 py-16 lg:grid-cols-[1.25fr_1fr] lg:py-28">
-    <div>
-      <p class="eyebrow">{contact.city} · Landscaping &amp; Gardening</p>
-      <h1 class="h-display mt-4 text-5xl sm:text-6xl lg:text-7xl">Gardens designed for {contact.city} homes</h1>
-      <p class="mt-6 max-w-xl text-lg text-white/90">Lawns, stone pathways, courtyards, planters and year-round garden maintenance, led by {contact.owner}.</p>
+<section class="on-dark relative isolate flex min-h-[86svh] items-end overflow-hidden bg-forest-900 text-white lg:items-center">
+  <div class="absolute inset-0 -z-10">
+    <Pic src={hero} alt="Modern villa garden with a lawn, stone stepping path and tropical planting" pos="50% 62%" widths={[640, 1024, 1376]} sizes="100vw" priority />
+    <div class="absolute inset-0 bg-gradient-to-t from-forest-900 via-forest-900/60 to-forest-900/10 lg:bg-gradient-to-r lg:from-forest-900/92 lg:via-forest-900/55 lg:to-forest-900/5"></div>
+  </div>
+  <div class="container-x py-16 lg:py-28">
+    <div class="max-w-2xl">
+      <p class="eyebrow flex items-center gap-3"><span class="h-px w-10 bg-sage-300"></span>{contact.city} · Landscaping &amp; Gardening</p>
+      <h1 class="h-display mt-5 text-5xl sm:text-6xl lg:text-7xl">Gardens designed for <em class="font-medium text-sage-300">{contact.city}</em> homes</h1>
+      <p class="mt-6 max-w-xl text-lg text-white/90">From clean modern modular layouts to timeless traditional courtyards, we design, build and maintain gardens that feel like part of your home. Led by {contact.owner}.</p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row">
         <a href={waLink('Hello Vanascape Gardens, I would like a free site visit.')} target="_blank" rel="noopener" class="btn btn-wa"><Icons name="whatsapp" /> WhatsApp for a free site visit</a>
-        <a href="/services/" class="btn btn-ghost">Explore our services</a>
+        <a href="/projects/" class="btn btn-ghost">View garden styles</a>
       </div>
-    </div>
-    <div class="relative hidden justify-self-center lg:block" aria-hidden="true">
-      <div class="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-clay-500/90"></div>
-      <div class="relative rounded-[2rem] bg-cream p-3 shadow-2xl"><Logo size={340} variant="full" priority /></div>
     </div>
   </div>
 </section>

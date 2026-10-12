@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
+import Pic from '../components/Pic.astro';
+import banner from '../assets/photos/traditional-house-garden.jpg';
 import About from '../components/About.astro';
 import HowWeWork from '../components/HowWeWork.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -11,6 +13,7 @@ import CtaBand from '../components/CtaBand.astro';
   path="/about/"
 >
   <PageHeader eyebrow="About us" title="Meet Vanascape Gardens" />
+  <div class="container-x pt-10"><div class="aspect-[16/8] overflow-hidden rounded-3xl shadow-lg"><Pic src={banner} alt="Traditional South Indian house with a lawn, coconut palms and a small pond" pos="50% 60%" sizes="(min-width: 1024px) 1100px, 100vw" widths={[640, 1024, 1376]} /></div></div>
   <About />
   <HowWeWork />
   <CtaBand />
